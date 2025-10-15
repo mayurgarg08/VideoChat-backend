@@ -14,25 +14,12 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = [
-  "http://localhost:5173",           
-  "https://mayurvideochat.netlify.app" 
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // allow Postman, curl etc.
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
-        return callback(new Error(msg), false);
-      }
-      return callback(null, true);
-    },
-    credentials: true,
+    origin: ["https://mayurvideochat.netlify.app", "http://localhost:5173"],
+    credentials: true, // ✅ allow cookies
   })
 );
-
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
