@@ -16,8 +16,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    // allow frontend to send cookies
-    origin: "http://localhost:5173",
+    origin: "https://mayurvideochat.netlify.app",
     credentials: true,
   })
 );
